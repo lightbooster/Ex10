@@ -3,6 +3,8 @@
 #ifndef INCLUDE_POSTFIX_H_
 #define INCLUDE_POSTFIX_H_
 
-std::string infix2prefix(std::string init_string);
+#include <string>
 
-#endif  // INCLUDE_MYSTACK_H_
+std::string infix2postfix(std::string init_string);
+
+#endif  // INCLUDE_POSTFIX_H_

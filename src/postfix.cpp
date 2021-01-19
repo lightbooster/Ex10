@@ -6,14 +6,15 @@
 #include "postfix.h"
 #include "MyStack.h"
 
-std::string infix2prefix(std::string init_string) {
-  std::map<char, int> op_w = {{'(', 0}, {')', 1}, {'+', 2}, {'-', 2}, {'*', 3}, {'/', 3}};
-  MyStack<char> stack((int)init_string.length());
+std::string infix2postfix(std::string init_string) {
+  std::map<char, int> op_w =
+    {{'(', 0}, {')', 1}, {'+', 2}, {'-', 2}, {'*', 3}, {'/', 3}};
+  MyStack<char> stack(init_string.length());
   std::string postfix_string = "";
 
   for (int i = 0; i < init_string.length(); i++) {
     // space handler
-    if (init_string[i] == ' '){
+    if (init_string[i] == ' ') {
       if (postfix_string[postfix_string.length() - 1] != ' ')
         postfix_string += " ";
       continue;
@@ -27,7 +28,9 @@ std::string infix2prefix(std::string init_string) {
     }
 
     // operation
-    if (stack.isEmpty() || op_w[init_string[i]] == 0 || op_w[init_string[i]] > op_w[stack.get()]) {
+    if (stack.isEmpty() ||
+        op_w[init_string[i]] == 0 ||
+        op_w[init_string[i]] > op_w[stack.get()]) {
       // push to stack
       stack.push(init_string[i]);
       continue;
@@ -47,7 +50,6 @@ std::string infix2prefix(std::string init_string) {
       while (!stack.isEmpty() && op_w[stack.get()] >= op_w[init_string[i]]) {
         if (postfix_string[postfix_string.length() - 1] != ' ')
           postfix_string += " ";
-
         postfix_string += stack.pop();
 
       }
@@ -58,7 +60,6 @@ std::string infix2prefix(std::string init_string) {
   while (!stack.isEmpty()) {
     if (postfix_string[postfix_string.length() - 1] != ' ')
       postfix_string += " ";
-    
     postfix_string += stack.pop();
   }
 

@@ -9,7 +9,7 @@ class MyStack {
   int max_size;
   int size;
   T* stack;
-  
+
  public:
   MyStack() {
     this->max_size = 0;
