@@ -51,7 +51,6 @@ std::string infix2postfix(std::string init_string) {
         if (postfix_string[postfix_string.length() - 1] != ' ')
           postfix_string += " ";
         postfix_string += stack.pop();
-
       }
       stack.push(init_string[i]);
     }
